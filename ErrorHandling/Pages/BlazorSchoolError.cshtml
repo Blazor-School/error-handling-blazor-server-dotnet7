@@ -1,0 +1,27 @@
+﻿@page
+@using ComponentAndHttpErrorsHandling.Pages;
+@model BlazorSchoolError
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Error</title>
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+</head>
+
+<body>
+    <div>
+        <div>
+            An error has occurred. Press "Submit" to report the error. Open the console to see the logged information.
+            <form method="post">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

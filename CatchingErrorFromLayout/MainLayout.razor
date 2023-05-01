@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+
+<main>
+    <CascadingValue Value="MainErrorBoundary">
+        <ErrorBoundary @ref="MainErrorBoundary">
+            <ChildContent>
+                @Body
+            </ChildContent>
+            <ErrorContent>
+                <div>An error occurred <button @onclick="_ => MainErrorBoundary?.Recover()">Resolve Error</button></div>
+            </ErrorContent>
+        </ErrorBoundary>
+    </CascadingValue>
+</main>
+
+@code {
+    public ErrorBoundary? MainErrorBoundary { get; set; }
+}

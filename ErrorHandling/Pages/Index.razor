@@ -1,0 +1,19 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+<PageTitle>Blazor School code sample</PageTitle>
+
+<h1>Welcome to Blazor School!</h1>
+<p>Demonstrate how to handle errors in Blazor Server .NET 7 - Blazor School</p>
+<p>For additional tutorials on Blazor Server, visit <a href="https://blazorschool.com" target="_blank">Blazor School</a>.</p>
+
+<div><NavLink href="Default Error Handling">Default Error Handling</NavLink></div>
+<div><NavLink href="handling-component-error">Handling Component Error</NavLink></div>
+<div><NavLink href="handling-http-errors-by-http-client-wrapper">Handling HTTP Errors by HttpClient Wrapper</NavLink></div>
+<div><NavLink href="custom-error-handling">Custom Error Handling</NavLink></div>
+<div><button type="button" @onclick="GoToFirstRequestErrorHandling">First Request Error Handling</button></div>
+<div><NavLink href="common-mistake-trigger-error-outside-scope">Common Mistake Trigger Error Outside Scope</NavLink></div>
+
+@code {
+    public void GoToFirstRequestErrorHandling() => NavigationManager.NavigateTo("/first-request-error-handling", true);
+}

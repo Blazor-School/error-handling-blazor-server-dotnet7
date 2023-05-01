@@ -1,0 +1,47 @@
+﻿@page "/custom-error-handling"
+@using ComponentAndHttpErrorsHandling.Utilities
+@using ComponentAndHttpErrorsHandling.Components
+@using System.Collections.Specialized
+@inject ExceptionRecorderService ExceptionRecorderService
+
+<h3>CustomErrorHandling</h3>
+<div style="border: solid 5px blue">
+    <div>Custom error boundary with modified max error.</div>
+    <BlazorSchoolErrorBoundary>
+        <ChildContent>
+            <TriggerError />
+        </ChildContent>
+        <ErrorContent>
+            <TriggerError />
+            <div>Throw more error and I will crash.</div>
+        </ErrorContent>
+    </BlazorSchoolErrorBoundary>
+</div>
+<div style="border: solid 5px green">
+    <div>Custom error boundary with default error content.</div>
+    <BlazorSchoolErrorBoundary>
+        <TriggerError />
+    </BlazorSchoolErrorBoundary>
+</div>
+
+@foreach (var exception in ExceptionRecorderService.Exceptions)
+{
+    <div>@exception.Message</div>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        ExceptionRecorderService.Exceptions.CollectionChanged += RefreshUI;
+    }
+
+    public void RefreshUI(object? sender, NotifyCollectionChangedEventArgs eventArgs)
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        ExceptionRecorderService.Exceptions.CollectionChanged -= RefreshUI;
+    }
+}
